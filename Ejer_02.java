@@ -116,26 +116,26 @@ class Gestor{
             agregar("Navia",80,25,15,8);  
             agregar("Nahida",100,30,20,6);  
             agregar("Kadeehara",70,35,10,9);  
-            System.out.println("desienden almas del mar de estrellas");  
+            System.out.println("Decienden almas del mar de estrellas");  
         }  
     }  
     public void agregar(String n,int v,int a,int d,int al){  
         for(Personaje p:lista){  
             if(p.getNombre().equalsIgnoreCase(n)){  
-                System.out.println("nombre usado gg");  
+                System.out.println("Nombre usado");  
                 return;  
             }  
         }  
         lista.add(new Personaje(n,v,a,d,al));  
         guardar();  
-        System.out.println("nuevo viajero llego a teyvat");  
+        System.out.println("Nuevo viajero llego a teyvat");  
     }  
     public void mostrar(){  
-        if(lista.isEmpty())System.out.println("estas solo");  
+        if(lista.isEmpty())System.out.println("Estas solo");  
         else for(Personaje p:lista)System.out.println(p.toString());  
     }  
     public void filtrarAtributo(String tipo){  
-        if(lista.isEmpty()){System.out.println("sin viajeros");return;}  
+        if(lista.isEmpty()){System.out.println("Sin viajeros");return;}  
         Comparator<Personaje> cmp=null;  
         switch(tipo.toLowerCase()){  
             case "vida": 
@@ -154,7 +154,7 @@ class Gestor{
                 cmp=(x,y)->y.getNivel()-x.getNivel();
                 break;  
             default:
-                System.out.println("atributo invalido");
+                System.out.println("Atributo invalido");
                 return;
         }
         lista.sort(cmp);  
@@ -165,38 +165,38 @@ class Gestor{
             if(p.getNombre().equalsIgnoreCase(n)){  
                 p.setVida(v);p.setAtaque(a);p.setDefensa(d);p.setAlcance(al);  
                 guardar();  
-                System.out.println("reestructuracion de vida");  
+                System.out.println("Reestructuracion de vida");  
                 return;  
             }  
         }  
-        System.out.println("viajero errante no encontrado");  
+        System.out.println("Viajero errante no encontrado");  
     }  
     public void actualizarAtributo(String n,String atr,int val){  
         for(Personaje p:lista){  
             if(p.getNombre().equalsIgnoreCase(n)){  
                 switch(atr.toLowerCase()){  
-                    case "vida":
+                    case "Vida":
                         p.setVida(val);
                         break;  
-                    case "ataque":
+                    case "Ataque":
                         p.setAtaque(val);
                         break;  
-                    case "defensa":
+                    case "Defensa":
                         p.setDefensa(val);
                         break;  
-                    case "alcance":
+                    case "Alcance":
                         p.setAlcance(val);
                         break;  
                     default:
-                        System.out.println("no existe ese atributo");
+                        System.out.println("No existe ese atributo");
                         return;  
                 }  
                 guardar();  
-                System.out.println("atributo actualizado");  
+                System.out.println("Atributo actualizado");  
                 return;  
             }  
         }  
-        System.out.println("personaje no existe");  
+        System.out.println("Personaje no existe");  
     }  
     public void eliminar(String n){  
         Iterator<Personaje> it=lista.iterator();  
@@ -205,15 +205,15 @@ class Gestor{
             if(p.getNombre().equalsIgnoreCase(n)){  
                 it.remove();  
                 guardar();  
-                System.out.println("las estrellas de desvanecen en el cosmos");  
+                System.out.println("Las estrellas de desvanecen en el cosmos");  
                 return;  
             }  
         }  
-        System.out.println("quisiste decir otro nombre??????");  
+        System.out.println("¿Quisiste decir otro nombre?");  
     }  
     public void mostrarEstadisticas(){  
         if(lista.isEmpty()){
-            System.out.println("no hay viajeros");
+            System.out.println("No hay viajeros");
             return;
         }  
         int total=lista.size();  
@@ -224,16 +224,16 @@ class Gestor{
             defensa+=p.getDefensa();  
             alcance+=p.getAlcance();  
         }  
-        System.out.println("total personajes:"+total);  
-        System.out.println("vida promedio:"+(vida/total));  
-        System.out.println("ataque promedio:"+(ataque/total));  
-        System.out.println("defensa promedio:"+(defensa/total));  
-        System.out.println("alcance promedio:"+(alcance/total));  
+        System.out.println("Total personajes:"+total);  
+        System.out.println("Vida promedio:"+(vida/total));  
+        System.out.println("Ataque promedio:"+(ataque/total));  
+        System.out.println("Defensa promedio:"+(defensa/total));  
+        System.out.println("Alcance promedio:"+(alcance/total));  
     }  
     public void importarDesdeArchivo(String ruta){  
         File otro=new File(ruta);  
         if(!otro.exists()){
-            System.out.println("archivo externo no existe");
+            System.out.println("Archivo externo no existe");
             return;
         }  
         try(BufferedReader br=new BufferedReader(new FileReader(otro))){  
@@ -249,10 +249,10 @@ class Gestor{
                     agregar(n,v,a,d,al);  
                 }  
             }  
-            System.out.println("importacion completada desde "+ruta);  
+            System.out.println("Importacion completada desde "+ruta);  
         }
         catch(Exception e){
-            System.out.println("error importando archivo");
+            System.out.println("Error importando archivo");
         }  
     }  
     public void subirNivel(String n){  
@@ -260,15 +260,15 @@ class Gestor{
             if(p.getNombre().equalsIgnoreCase(n)){  
                 p.subirNivel();  
                 guardar();  
-                System.out.println(p.getNombre()+" subio al nivel "+p.getNivel());  
+                System.out.println(p.getNombre()+" Subio al nivel "+p.getNivel());  
                 return;  
             }  
         }  
-        System.out.println("personaje no encontrado");  
+        System.out.println("Personaje no encontrado");  
     }  
 }  
 
-public class Ejer2Genshinv1{  
+public class Ejer_02{  
     public static void main(String[] args){  
         Gestor g=new Gestor("viajeros.txt");  
         g.mostrar();  
