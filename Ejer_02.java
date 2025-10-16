@@ -67,10 +67,7 @@ class Personaje{
     public String toString(){  
         return nombre+","+vida+","+ataque+","+defensa+","+alcance+","+nivel;  
     }  
-}  
-
-
-
+}
 
 class Gestor{  
     private List<Personaje> lista;  
@@ -268,7 +265,7 @@ class Gestor{
     }  
 }  
 
-public class Ejer_02{  
+public class main {  
     public static void main(String[] args){  
         Gestor g=new Gestor("viajeros.txt");  
         g.mostrar();  
