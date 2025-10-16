@@ -8,7 +8,7 @@ class Personaje{
     private int alcance;
     public Personaje(String nombre,int vida,int ataque,int defensa,int alcance){
         if(vida<=0||ataque<=0||defensa<=0||alcance<=0){
-            throw new IllegalArgumentException("mayor a 0 >:/");
+            throw new IllegalArgumentException("Mayor a 0 >:/");
         }else{
             this.nombre=nombre;  
             this.vida=vida;  
@@ -78,7 +78,7 @@ class Gestor{
                 }  
             }  
         }catch(Exception e){  
-            System.out.println("error cargando archivo");  
+            System.out.println("Error cargando archivo");  
         }  
     } 
     private void guardar(){  
@@ -87,22 +87,22 @@ class Gestor{
                 pw.println(p.toString());  
             }  
         }catch(Exception e){  
-            System.out.println("error guardando archivo");  
+            System.out.println("Error guardando archivo");  
         }  
     }
     public void agregar(String n,int v,int a,int d,int al){  
         for(Personaje p:lista){  
             if(p.getNombre().equalsIgnoreCase(n)){  
-                System.out.println("elige otro nombre crack");  
+                System.out.println("Elige otro nombre crack");  
                 return;  
             }  
         }  
         lista.add(new Personaje(n,v,a,d,al));  
         guardar();  
-        System.out.println("nuevo viajero llego a teyvat");  
+        System.out.println("Nuevo viajero llego a teyvat");  
     }
     public void mostrar(){  
-        if(lista.isEmpty())System.out.println("estas solo");  
+        if(lista.isEmpty())System.out.println("Estas solo");  
         else for(Personaje p:lista)System.out.println(p.toString());  
     }
     public void modificar(String n,int v,int a,int d,int al){  
@@ -113,11 +113,11 @@ class Gestor{
                 p.setDefensa(d);  
                 p.setAlcance(al);  
                 guardar();  
-                System.out.println("reestructuracion de vida");  
+                System.out.println("Reestructuracion de vida");  
                 return;  
             }  
         }  
-        System.out.println("viajero errante no encontrado");  
+        System.out.println("Viajero errante no encontrado");  
     }
     public void eliminar(String n){  
         Iterator<Personaje> it=lista.iterator();  
@@ -126,14 +126,14 @@ class Gestor{
             if(p.getNombre().equalsIgnoreCase(n)){  
                 it.remove();  
                 guardar();  
-                System.out.println("las estrellas de desvanecen en el cosmos");  
+                System.out.println("Las estrellas de desvanecen en el cosmos");  
                 return;  
             }  
         }  
-        System.out.println("quisiste decir otro nombre??????");  
+        System.out.println("¿Quisiste decir otro nombre?");  
     }  
 }  
-public class Ejer1Genshinv0p4{  
+public class main {  
     public static void main(String[] args){  
         Gestor g=new Gestor("viajeros.txt");  
         g.agregar("Aether",100,30,20,5);  
