@@ -1,45 +1,20 @@
-import java.io.*;
- 
-class Fecha implements Serializable {
-    int dia, mes, anio;
- 
-    Fecha(int d, int m, int a) {
-        dia = d;
-        mes = m;
-        anio = a;
-    }
-}
- 
-class Persona implements Serializable {
-    String nombre;
- 
-    Persona(String n) {
-        nombre = n;
-    }
-}
- 
-class Alumno extends Persona {
-    Fecha nacimiento;
- 
-    Alumno(String n, Fecha f) {
-        super(n);
-        nacimiento = f;
-    }
-}
- 
-public class Serializacion {
+import java.io.Serializable;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+public class CargarPersonas {
     public static void main(String[] args) {
-        Alumno a1 = new Alumno("Carlos", new Fecha(1, 2, 2000));
-        Alumno a2 = new Alumno("Lucía", new Fecha(15, 5, 1999));
-        Alumno a3 = new Alumno("Mario", new Fecha(30, 8, 2001));
- 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("alumnos.dat"))) {
-            oos.writeObject(a1);
-            oos.writeObject(a2);
-            oos.writeObject(a3);
-            System.out.println("Objetos serializados correctamente.");
-        } catch (IOException e) {
-            System.out.println("Error de E/S: " + e);
+        // Cargar los objetos desde un archivo
+        try (FileInputStream fis = new FileInputStream("personas.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis)) {
+            Persona p1 = (Persona) ois.readObject();
+            Persona p2 = (Persona) ois.readObject();
+            System.out.println("Personas cargadas desde el archivo:");
+            System.out.println(p1);
+            System.out.println(p2);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error al cargar las personas: " + e.getMessage());
         }
     }
 }
