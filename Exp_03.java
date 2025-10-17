@@ -1,30 +1,20 @@
-import java.io.*;
-import java.util.*;
- 
-public class MatrizArchivo {
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Número de filas: ");
-        int filas = sc.nextInt();
-        System.out.print("Número de columnas: ");
-        int columnas = sc.nextInt();
-        double[][] matriz = new double[filas][columnas];
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                System.out.print("Elemento [" + i + "][" + j + "]: ");
-                matriz[i][j] = sc.nextDouble();
-            }
-        }
-        try (DataOutputStream salida = new DataOutputStream(new FileOutputStream("matriz.dat"))) {
-            salida.writeInt(filas);
-            salida.writeInt(columnas);
-            for (int i = 0; i < filas; i++) {
-                for (int j = 0; j < columnas; j++) {
-                    salida.writeDouble(matriz[i][j]);
-                }
-            }
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+public class BinaryFileOutputStream {
+    public static void main(String[] args) {
+        // Especifica la ruta y el nombre del archivo binario
+        String filePath = "datos.bin";
+        // Usa FileOutputStream y DataOutputStream para escribir en el archivo binario
+        try (FileOutputStream fos = new FileOutputStream(filePath);
+        DataOutputStream dos = new DataOutputStream(fos)) {
+            // Escribir diferentes tipos de datos en el archivo
+            dos.writeInt(100); // Escribir un entero
+            dos.writeDouble(3.14); // Escribir un doble
+            dos.writeUTF("Hola, mundo!"); // Escribir una cadena
+            System.out.println("Datos escritos en el archivo binario: " + filePath);
         } catch (IOException e) {
-            System.out.println("Error de E/S: " + e);
+            System.out.println("Ocurrió un error al escribir en el archivo: " + e.getMessage());
         }
     }
 }
