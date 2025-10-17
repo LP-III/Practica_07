@@ -1,26 +1,27 @@
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Scanner;
- 
-public class MostrarArchivo { 
- 
-    public static void main(String[] args) {
-        
-        Scanner escaner = new Scanner(System.in);
-        String cadena;
- 
-        try (PrintWriter salida = new PrintWriter("c:/ficheros/datos.txt")) { 
-            System.out.println("Introduce texto. Para acabar introduce la cadena FIN:");
-            cadena = escaner.nextLine();
- 
-            while (!cadena.equalsIgnoreCase("FIN")) { 
-                salida.println(cadena);
-                cadena = escaner.nextLine();
-            }
-            
-        } catch (FileNotFoundException e) { 
- 
-            System.out.println(e.getMessage());
-        }
+import java.io.Serializable;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+public class Persona implements Serializable {
+    private static final long serialVersionUID = 1L; // Versión de serialización
+    private String nombre;
+    private int edad;
+    // Constructor
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+    // Getters
+    public String getNombre() {
+        return nombre;
+    }
+    public int getEdad() {
+        return edad;
+    }
+    // Método toString
+    @Override
+    public String toString() {
+        return "Persona{" + "nombre='" + nombre + '\'' + ", edad=" + edad +'}';
     }
 }
